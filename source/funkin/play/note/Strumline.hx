@@ -2,16 +2,21 @@ package funkin.play.note;
 
 import flixel.FlxG;
 import flixel.group.FlxGroup;
+import funkin.data.song.SongData.SongNoteData;
 
 /**
  * An `FlxGroup` containing strums and notes.
  */
 class Strumline extends FlxGroup
 {
-    public var strums:FlxTypedGroup<StrumSprite>;
+    public var data:Array<SongNoteData> = [];
+    public var speed:Float;
 
     public var offset(default, set):Float = 0.5;
     public var spacing(default, set):Float = 0;
+
+    public var strums:FlxTypedGroup<StrumSprite>;
+    public var notes:FlxTypedGroup<NoteSprite>;
 
     public function new()
     {
@@ -20,12 +25,44 @@ class Strumline extends FlxGroup
         strums = new FlxTypedGroup<StrumSprite>();
         add(strums);
 
+        notes = new FlxTypedGroup<NoteSprite>();
+        add(notes);
+
         buildStrums();
     }
 
     public function process(isPlayer:Bool)
     {
-        // TODO: Add proper strumline processing
+        var songTime:Float = Conductor.instance.time;
+
+        // Spawns the notes
+        // TODO: Make notes spawn based on its distance
+        // TODO: Add hold notes
+        while (data.length > 0)
+        {
+            var noteData:SongNoteData = data.shift();
+            var time:Float = noteData.t;
+            var direction:NoteDirection = NoteDirection.fromInt(noteData.d);
+
+            var note:NoteSprite = notes.recycle(NoteSprite);
+
+            note.time = time;
+            note.direction = direction;
+        }
+
+        // Note processing
+        notes.forEachAlive(note -> {
+            var strum:StrumSprite = strums.members[note.direction];
+            var distance:Float = (note.time - songTime) * Constants.PIXELS_PER_MS * speed;
+
+            note.x = strum.x;
+            note.y = strum.y + distance;
+
+            note.active = distance < FlxG.height;
+            note.visible = note.active;
+
+            if (distance <= 0) note.kill();
+        });
     }
 
     function buildStrums()

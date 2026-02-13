@@ -1,0 +1,48 @@
+package funkin.play.note;
+
+import flixel.FlxSprite;
+
+/**
+ * An `FlxSprite` used as a note for a `Strumline`.
+ */
+class NoteSprite extends FlxSprite
+{
+    public var time:Float;
+    public var direction(default, set):NoteDirection;
+
+    public function new()
+    {
+        super();
+
+        buildSprite();
+    }
+
+    public function buildSprite()
+    {
+        loadGraphic(Paths.image('play/ui/notes'), true, 26, 26);
+        setGraphicSize(Std.int(width * Constants.ZOOM));
+        updateHitbox();
+
+        for (direction in 0...Constants.NOTE_COUNT)
+            animation.add('note$direction', [direction + Constants.NOTE_COUNT * 3], 10);
+
+        set_direction(direction);
+    }
+
+    override public function revive()
+    {
+        super.revive();
+
+        time = 0;
+        direction = LEFT;
+    }
+
+    function set_direction(direction:NoteDirection):NoteDirection
+    {
+        this.direction = direction % Constants.NOTE_COUNT;
+
+        animation.play('note${this.direction}');
+
+        return this.direction;
+    }
+}

@@ -1,6 +1,5 @@
 package funkin.play;
 
-import flixel.text.FlxText;
 import funkin.play.note.Strumline;
 import funkin.ui.FunkinState;
 
@@ -9,6 +8,8 @@ import funkin.ui.FunkinState;
  */
 class PlayState extends FunkinState
 {
+	var loadedSong:Bool = false;
+
 	var opponentStrumline:Strumline;
 	var playerStrumline:Strumline;
 
@@ -22,12 +23,18 @@ class PlayState extends FunkinState
 		playerStrumline.offset = 0.75;
 		add(playerStrumline);
 
+		loadSong();
+
 		super.create();
 	}
 
 	override public function update(elapsed:Float)
 	{
-		conductor.update();
+		if (loadedSong)
+		{
+			conductor.time += elapsed * Constants.MS_PER_SEC;
+			conductor.update();
+		}
 
 		opponentStrumline.process(false);
 		playerStrumline.process(true);
@@ -35,6 +42,17 @@ class PlayState extends FunkinState
 		processInput();
 
 		super.update(elapsed);
+	}
+
+	function loadSong()
+	{
+		conductor.bpm = 100;
+		conductor.time = -conductor.crotchet * 4;
+
+		playerStrumline.data = [{ t: 0, d: 0 }, { t: 1000, d: 1 }, { t: 2000, d: 2 }, { t: 3000, d: 3 }];
+		playerStrumline.speed = 1;
+
+		loadedSong = true;
 	}
 
 	function processInput()
