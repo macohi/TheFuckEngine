@@ -40,7 +40,7 @@ class PlayState extends FunkinState
 		}
 
 		opponentStrumline.process(false);
-		playerStrumline.process(true);
+		playerStrumline.process(!Preferences.botplay);
 
 		processInput();
 
@@ -87,10 +87,11 @@ class PlayState extends FunkinState
 
 		for (i in 0...directionNotes.length)
 		{
-			var direction:NoteDirection = NoteDirection.fromInt(i);
 			var note:NoteSprite = directionNotes[i][0];
+			var direction:NoteDirection = NoteDirection.fromInt(i);
+			var pressed:Bool = direction.justPressed || Preferences.botplay;
 
-			if (!direction.justPressed || note == null) continue;
+			if (!pressed || note == null) continue;
 
 			playerStrumline.hitNote(note);
 			playerStrumline.playSplash(direction);

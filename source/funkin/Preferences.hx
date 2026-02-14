@@ -6,4 +6,5 @@ package funkin;
 class Preferences
 {
     public static var downscroll:Bool = false;
+    public static var botplay:Bool = false;
 }
