@@ -1,6 +1,7 @@
 package funkin.play;
 
 import flixel.FlxG;
+import flixel.util.FlxSort;
 import funkin.play.note.NoteDirection;
 import funkin.play.note.NoteSprite;
 import funkin.play.note.Strumline;
@@ -57,8 +58,8 @@ class PlayState extends FunkinState
 		playerStrumline.speed = 2;
 		playerStrumline.data = [];
 
-		for (i in 0...100)
-			playerStrumline.data.push({ t: i * 1100, d: FlxG.random.int(0, Constants.NOTE_COUNT), l: 1000 });
+		for (i in 0...200)
+			playerStrumline.data.push({ t: i * 100, d: FlxG.random.int(0, Constants.NOTE_COUNT), l: 0 });
 
 		opponentStrumline.data = playerStrumline.data.copy();
 		opponentStrumline.speed = playerStrumline.speed;
@@ -81,6 +82,7 @@ class PlayState extends FunkinState
 			if (!direction.justPressed || note == null) continue;
 
 			playerStrumline.hitNote(note);
+			playerStrumline.playSplash(direction);
 		}
 
 		// Opponent input

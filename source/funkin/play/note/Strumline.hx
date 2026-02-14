@@ -3,6 +3,7 @@ package funkin.play.note;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
 import funkin.data.song.SongData.SongNoteData;
+import funkin.util.SortUtil;
 
 /**
  * An `FlxGroup` containing strums and notes.
@@ -18,6 +19,7 @@ class Strumline extends FlxGroup
     public var strums:FlxTypedGroup<StrumSprite>;
     public var notes:FlxTypedGroup<NoteSprite>;
     public var holdNotes:FlxTypedGroup<HoldNoteSprite>;
+    public var splashes:FlxTypedGroup<NoteSplash>;
 
     var songTime(get, never):Float;
 
@@ -27,6 +29,9 @@ class Strumline extends FlxGroup
 
         strums = new FlxTypedGroup<StrumSprite>();
         add(strums);
+
+        splashes = new FlxTypedGroup<NoteSplash>(Constants.NOTE_COUNT);
+        add(splashes);
 
         holdNotes = new FlxTypedGroup<HoldNoteSprite>();
         add(holdNotes);
@@ -179,8 +184,16 @@ class Strumline extends FlxGroup
     public function playConfirm(direction:NoteDirection)
         getStrum(direction).confirmTime = 1;
 
+    public function playSplash(direction:NoteDirection)
+    {
+        var splash:NoteSplash = splashes.recycle(NoteSplash);
+        var strum:StrumSprite = getStrum(direction);
+
+        splash.play(strum);
+    }
+
     public function getMayHitNotes():Array<NoteSprite>
-        return notes.members.filter(note -> return note.alive && note.mayHit && !note.tooLate);
+        return SortUtil.sortNotes(notes.members.filter(note -> return note.alive && note.mayHit && !note.tooLate));
 
     public function getStrum(direction:NoteDirection):StrumSprite
         return strums.members[direction];
