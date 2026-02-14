@@ -85,40 +85,8 @@ class PlayState extends FunkinState
 			playerStrumline.hitNote(note);
 		}
 
-		for (holdNote in playerStrumline.getHitHoldNotes())
-		{
-			if (!holdNote.direction.pressed)
-			{
-				playerStrumline.dropHoldNote(holdNote);
-				continue;
-			}
-			playerStrumline.hitHoldNote(holdNote);
-		}
-		
-		playerStrumline.strums.forEach(strum -> {
-			if (strum.direction.pressed)
-			{
-				if (strum.confirmTime > 0)
-					strum.animation.play('confirm');
-				else
-					strum.animation.play('press');
-			}
-			else
-				strum.animation.play('static');
-		});
-
 		// Opponent input
 		for (note in opponentStrumline.getMayHitNotes())
 			opponentStrumline.hitNote(note);
-
-		for (holdNote in opponentStrumline.getHitHoldNotes())
-			opponentStrumline.hitHoldNote(holdNote);
-
-		opponentStrumline.strums.forEach(strum -> {
-			if (strum.confirmTime > 0)
-				strum.animation.play('confirm');
-			else
-				strum.animation.play('static');
-		});
 	}
 }

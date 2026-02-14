@@ -108,8 +108,7 @@ class Strumline extends FlxGroup
 
         // Hold note processing
         holdNotes.forEachAlive(holdNote -> {
-            var strum:StrumSprite = getStrum(holdNote.direction);
-            
+            var strum:StrumSprite = getStrum(holdNote.direction);  
             var distance:Float = getDistance(holdNote.time);
             var y:Float = strum.y + strum.height / 2;
 
@@ -117,10 +116,33 @@ class Strumline extends FlxGroup
             holdNote.x = strum.x + (strum.width - holdNote.width) / 2;
             holdNote.y = y + distance;
 
-            if (holdNote.wasHit) holdNote.y -= distance;
-
-            // Drops the hold note if it goes offscreen
             if (distance <= -y - holdNote.height && !holdNote.wasHit) dropHoldNote(holdNote);
+
+            // Hold note input
+            if (holdNote.wasHit)
+            {
+                if (!holdNote.direction.pressed && isPlayer)
+                {
+                    dropHoldNote(holdNote);
+                    return;
+                }
+
+                holdNote.y -= distance;
+
+                hitHoldNote(holdNote);
+            }
+        });
+
+        // Strum processing
+        strums.forEachAlive(strum -> {
+            var pressed:Bool = strum.direction.pressed;
+
+            if (strum.confirmTime > 0 && (pressed || !isPlayer))
+                strum.animation.play('confirm');
+            else if (pressed && isPlayer)
+                strum.animation.play('press');
+            else
+                strum.animation.play('static');
         });
     }
 
@@ -145,7 +167,7 @@ class Strumline extends FlxGroup
         var strum:StrumSprite = getStrum(holdNote.direction);
         strum.confirmTime = 1;
 
-        holdNote.length = Math.min(0, holdNote.time - songTime) + holdNote.fullLength;
+        holdNote.length = holdNote.time - songTime + holdNote.fullLength;
 
         // Kill the hold note if it's short enough
         if (holdNote.length <= 10) holdNote.kill();
