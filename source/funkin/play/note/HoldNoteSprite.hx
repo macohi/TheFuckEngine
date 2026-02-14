@@ -114,7 +114,7 @@ class HoldNoteSprite extends FlxStrip
     {
         width = graphicWidth * scale.x / Constants.NOTE_COUNT;
         height = holdHeight;
-        offset.set();
+        offset.set(0, flipY ? height : 0);
         origin.set();
     }
 

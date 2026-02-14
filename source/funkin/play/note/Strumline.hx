@@ -44,6 +44,9 @@ class Strumline extends FlxGroup
         {
             var strum:StrumSprite = new StrumSprite(direction);
             strum.y = 60;
+
+            if (Preferences.downscroll) strum.y = FlxG.height - strum.height - strum.y;
+
             strums.add(strum);
         }
 
@@ -80,6 +83,7 @@ class Strumline extends FlxGroup
 
                 holdNote.fullLength = length;
                 holdNote.length = length;
+                holdNote.flipY = Preferences.downscroll;
 
                 note.holdNote = holdNote;
             }
@@ -94,7 +98,7 @@ class Strumline extends FlxGroup
 
             // Positions the note
             note.x = strum.x;
-            note.y = strum.y + distance;
+            note.y = strum.y + distance * (Preferences.downscroll ? -1 : 1);
 
             if (distance <= -strum.y - note.height) missNote(note);
 
@@ -118,7 +122,7 @@ class Strumline extends FlxGroup
 
             // Positions the hold note
             holdNote.x = strum.x + (strum.width - holdNote.width) / 2;
-            holdNote.y = y + distance;
+            holdNote.y = y + distance * (Preferences.downscroll ? -1 : 1);
 
             if (distance <= -y - holdNote.height && !holdNote.wasHit) dropHoldNote(holdNote);
 
