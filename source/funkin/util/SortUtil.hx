@@ -8,9 +8,6 @@ import funkin.play.note.NoteSprite;
  */
 class SortUtil
 {
-    public static inline function sortNotes(notes:Array<NoteSprite>):Array<NoteSprite>
-    {
-        notes.sort((note1, note2) -> return FlxSort.byValues(FlxSort.ASCENDING, note1.time, note2.time));
-        return notes;
-    }
+    public static inline function byTime(order:Int, note1:NoteSprite, note2:NoteSprite):Int
+        return FlxSort.byValues(order, note1.time, note2.time);
 }

@@ -2,6 +2,7 @@ package;
 
 import flixel.FlxGame;
 import flixel.util.typeLimit.NextState.InitialState;
+import openfl.display.FPS;
 import openfl.display.Sprite;
 
 /**
@@ -9,6 +10,8 @@ import openfl.display.Sprite;
  */
 class Main extends Sprite
 {
+	public static var fpsCounter:FPS;
+
 	public function new()
 	{
 		super();
@@ -22,5 +25,9 @@ class Main extends Sprite
 		final startFullscreen:Bool = false;
 
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
+
+		// Adds an FPS counter
+		fpsCounter = new FPS(10, 10, 0xFFFFFF);
+		addChild(fpsCounter);
 	}
 }

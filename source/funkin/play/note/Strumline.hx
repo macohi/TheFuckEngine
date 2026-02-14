@@ -2,6 +2,7 @@ package funkin.play.note;
 
 import flixel.FlxG;
 import flixel.group.FlxGroup;
+import flixel.util.FlxSort;
 import funkin.data.song.SongData.SongNoteData;
 import funkin.util.SortUtil;
 
@@ -103,6 +104,10 @@ class Strumline extends FlxGroup
 
             data.shift();
         }
+
+        // Sorts the notes
+        // Not doing this will mess up the input
+        notes.sort((i, note1, note2) -> return SortUtil.byTime(FlxSort.ASCENDING, note1, note2));
 
         // Note processing
         notes.forEachAlive(note -> {
@@ -218,7 +223,7 @@ class Strumline extends FlxGroup
     }
 
     public function getMayHitNotes():Array<NoteSprite>
-        return SortUtil.sortNotes(notes.members.filter(note -> return note.alive && note.mayHit && !note.tooLate));
+        return notes.members.filter(note -> return note.alive && note.mayHit && !note.tooLate);
 
     public function getStrum(direction:NoteDirection):StrumSprite
         return strums.members[direction];
