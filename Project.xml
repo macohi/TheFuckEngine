@@ -4,7 +4,7 @@
 
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="The Fuck Engine" file="TheFuckEngine" main="Main" version="0.1.0" company="VirtuGuy" />
+	<app title="Friday Night Funkin' WTF Engine" file="WTFEngine" main="Main" version="0.1.0" company="VirtuGuy" />
 
 	<app preloader="flixel.system.FlxPreloader" />
 
