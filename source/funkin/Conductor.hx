@@ -23,6 +23,8 @@ class Conductor
     public var beatHit(default, null) = new FlxTypedSignal<Int->Void>();
     public var sectionHit(default, null) = new FlxTypedSignal<Int->Void>();
 
+    var lastStep:Int;
+    
     var lastSteps:Int = 0;
     var lastTimestamp:Float = 0;
 
@@ -30,7 +32,7 @@ class Conductor
 
     public function update()
     {
-        var lastStep:Int = step;
+        lastStep = step;
 
         // Calculates the current step
         step = lastSteps + Math.floor((time - lastTimestamp) / stepCrotchet);
@@ -61,7 +63,7 @@ class Conductor
     }
 
     inline function get_crotchet():Float
-        return Constants.BEATS_PER_MIN / bpm * Constants.MS_PER_SEC;
+        return Constants.SECS_PER_MIN / bpm * Constants.MS_PER_SEC;
 
     inline function get_stepCrotchet():Float
         return crotchet / Constants.STEPS_PER_BEAT;

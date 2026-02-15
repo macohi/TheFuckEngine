@@ -79,7 +79,8 @@ class Strumline extends FlxGroup
             note.direction = direction;
 
             // Creates a hold note
-            if (length > 0)
+            // However, its length has to be lengthy enough to be considered length
+            if (length > 25)
             {
                 var holdNote:HoldNoteSprite = holdNotes.recycle(HoldNoteSprite);
 
