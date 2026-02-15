@@ -36,8 +36,6 @@ class Strumline extends FlxGroup
         noteSplashes = new FlxTypedGroup<NoteSplash>(Constants.NOTE_COUNT);
         holdCovers = new FlxTypedGroup<HoldNoteCover>(Constants.NOTE_COUNT);
 
-        // Order:
-        // Strums, note splashes, hold notes, hold covers, and notes
         add(strums);
         add(noteSplashes);
         add(holdNotes);

@@ -18,9 +18,14 @@
 
 	<window if="mobile" orientation="landscape" fullscreen="true" width="0" height="0" />
 
+	<!-- __________________________ WTF Engine Defines _________________________  -->
+
+	<haxedef name="HAS_FPS_COUNTER" />
+
 	<!-- _____________________________ Path Settings ____________________________ -->
 
-	<set name="BUILD_DIR" value="export" />
+	<set name="BUILD_DIR" value="export/debug" if="debug" />
+	<set name="BUILD_DIR" value="export/release" unless="debug" />
 
 	<source path="source" />
 

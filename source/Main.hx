@@ -10,7 +10,9 @@ import openfl.display.Sprite;
  */
 class Main extends Sprite
 {
+	#if HAS_FPS_COUNTER
 	public static var fpsCounter:FPS;
+	#end
 
 	public function new()
 	{
@@ -27,7 +29,10 @@ class Main extends Sprite
 		addChild(new FlxGame(gameWidth, gameHeight, initialState, framerate, framerate, skipSplash, startFullscreen));
 
 		// Adds an FPS counter
+		// Only if it's enabled though
+		#if HAS_FPS_COUNTER
 		fpsCounter = new FPS(10, 10, 0xFFFFFF);
 		addChild(fpsCounter);
+		#end
 	}
 }

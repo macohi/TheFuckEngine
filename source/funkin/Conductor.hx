@@ -1,5 +1,6 @@
 package funkin;
 
+import flixel.FlxG;
 import flixel.util.FlxSignal;
 
 /**
@@ -43,6 +44,12 @@ class Conductor
         if (lastStep != step) stepHit.dispatch(step);
         if (lastBeat != beat) beatHit.dispatch(beat);
         if (lastSection != section) sectionHit.dispatch(section);
+
+        // Debug watching (for debugging purposes)
+        FlxG.watch.addQuick('time', time);
+        FlxG.watch.addQuick('step', step);
+        FlxG.watch.addQuick('beat', beat);
+        FlxG.watch.addQuick('section', section);
     }
 
     function set_bpm(bpm:Float):Float
