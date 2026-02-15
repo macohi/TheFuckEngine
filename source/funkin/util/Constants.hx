@@ -7,6 +7,7 @@ class Constants
 {
     public static final IMAGE_EXT:String = 'png';
     public static final SOUND_EXT:String = #if web 'mp3' #else 'ogg' #end;
+    public static final JSON_EXT:String = 'json';
 
     public static final MS_PER_SEC:Int = 1000;
     public static final SECS_PER_MIN:Int = 60;

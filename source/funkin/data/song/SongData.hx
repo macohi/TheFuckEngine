@@ -1,6 +1,25 @@
 package funkin.data.song;
 
 /**
+ * A structure object used for song metadata.
+ */
+typedef SongMetadata = {
+    @:default('Untitled')
+    var name:String;
+    @:default(100)
+    var bpm:Float;
+}
+
+/**
+ * A structure object used for song chart data.
+ */
+typedef SongChartData = {
+    @:default(1)
+    var speed:Float;
+    var notes:Array<SongNoteData>;
+}
+
+/**
  * A structure object used for song note data.
  */
 typedef SongNoteData = {

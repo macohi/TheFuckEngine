@@ -29,6 +29,8 @@ class HoldNoteSprite extends FlxStrip
 
         buildSprite();
 
+        active = false;
+
         // Sets the indices
         // This doesn't need to be changed at all
         indices[0] = 0;
@@ -53,8 +55,6 @@ class HoldNoteSprite extends FlxStrip
 
         graphicWidth = graphic.width;
         graphicHeight = graphic.height;
-
-        alpha = 0.6;
     }
 
     public function redraw()
@@ -122,6 +122,7 @@ class HoldNoteSprite extends FlxStrip
     {
         super.revive();
 
+        y = -9999;
         flipY = false;
 
         time = 0;

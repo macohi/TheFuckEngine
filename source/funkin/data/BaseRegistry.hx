@@ -1,0 +1,49 @@
+package funkin.data;
+
+import haxe.ds.StringMap;
+
+/**
+ * The base class for the game's registries.
+ */
+class BaseRegistry<T>
+{
+    public var entries:StringMap<T> = new StringMap<T>();
+
+    public var id:String;
+
+    public function new(id:String)
+    {
+        this.id = id;
+
+        load();
+    }
+
+    public function load()
+    {
+        // Clears the entries
+        clear();
+
+        // Loading entries should be done through extending this
+        // Because you aren't a baby anymore
+        // Grow up by extending this class and doing things the WTF Engine way
+    }
+
+    public function register(id:String, entry:T)
+    {
+        if (entries.exists(id))
+            trace('$id is already registered under ${this.id}!');
+        else
+            trace('Registered $id under ${this.id}.');
+        entries.set(id, entry);
+    }
+
+    public function fetch(id:String):T
+    {
+        if (!entries.exists(id))
+            trace('$id does NOT exist under ${this.id}!');
+        return entries.get(id);
+    }
+
+    public function clear()
+        entries.clear();
+}

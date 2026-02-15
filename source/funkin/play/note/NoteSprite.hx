@@ -19,6 +19,10 @@ class NoteSprite extends FlxSprite
     {
         super();
 
+        // No point of having this active
+        // Not like there's animation to the sprite
+        active = false;
+
         buildSprite();
     }
 
@@ -29,7 +33,7 @@ class NoteSprite extends FlxSprite
         updateHitbox();
 
         for (direction in 0...Constants.NOTE_COUNT)
-            animation.add('note$direction', [direction + Constants.NOTE_COUNT * 3], 10);
+            animation.add('note$direction', [direction + Constants.NOTE_COUNT * 3]);
 
         set_direction(direction);
     }
@@ -37,6 +41,8 @@ class NoteSprite extends FlxSprite
     override public function revive()
     {
         super.revive();
+
+        y = -9999;
 
         time = 0;
         direction = LEFT;

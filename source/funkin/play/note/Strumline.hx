@@ -96,11 +96,11 @@ class Strumline extends FlxGroup
             }
 
             data.shift();
-        }
 
-        // Sorts the notes
-        // Not doing this will mess up the input
-        notes.sort((i, note1, note2) -> return SortUtil.byTime(FlxSort.ASCENDING, note1, note2));
+            // Sorts the notes
+            // Not doing this will mess up the input
+            notes.sort((i, note1, note2) -> return SortUtil.byTime(FlxSort.ASCENDING, note1, note2));
+        }
 
         // Note processing
         notes.forEachAlive(note -> {

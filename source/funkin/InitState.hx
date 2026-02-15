@@ -2,7 +2,9 @@ package funkin;
 
 import flixel.FlxG;
 import flixel.FlxState;
+import funkin.data.song.SongRegistry;
 import funkin.input.Controls;
+import funkin.play.PlayState;
 
 /**
  * The initial state of the game. This is what sets up the game.
@@ -21,7 +23,12 @@ class InitState extends FlxState
         Conductor.instance = new Conductor();
         Controls.instance = new Controls();
 
+        SongRegistry.instance = new SongRegistry();
+
         // Starts the game
+        // Also loads up a test chart
+        PlayState.song = SongRegistry.instance.fetch('test');
+
         FlxG.switchState(() -> new funkin.play.PlayState());
 
         super.create();

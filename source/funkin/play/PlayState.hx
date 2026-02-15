@@ -1,6 +1,8 @@
 package funkin.play;
 
 import flixel.FlxG;
+import flixel.util.FlxSort;
+import funkin.data.song.SongData.SongNoteData;
 import funkin.play.note.NoteDirection;
 import funkin.play.note.NoteSprite;
 import funkin.play.note.Strumline;
@@ -11,10 +13,20 @@ import funkin.ui.FunkinState;
  */
 class PlayState extends FunkinState
 {
+	public static var instance:PlayState;
+	public static var song:Song;
+
 	var loadedSong:Bool = false;
 
 	var opponentStrumline:Strumline;
 	var playerStrumline:Strumline;
+
+	public function new()
+	{
+		super();
+
+		instance = this;
+	}
 
 	override public function create()
 	{
@@ -53,26 +65,25 @@ class PlayState extends FunkinState
 
 	function loadSong()
 	{
-		conductor.bpm = 100;
+		conductor.bpm = song.bpm;
 		conductor.time = -conductor.crotchet * 4;
 
-		playerStrumline.speed = 1;
-		playerStrumline.data = [];
-
-		var lastDir:Int = 0;
-
-		for (i in 0...200)
-		{
-			var direction:Int = lastDir;
-			while (direction == lastDir)
-				direction = FlxG.random.int(0, Constants.NOTE_COUNT - 1);
-			lastDir = direction;
-
-			playerStrumline.data.push({ t: i * 550, d: direction, l: 500 });
-		}
-
-		opponentStrumline.data = playerStrumline.data.copy();
+		playerStrumline.speed = song.speed;
 		opponentStrumline.speed = playerStrumline.speed;
+
+		var notes:Array<SongNoteData> = song.getNotes();
+
+		// Sorts the notes because yeah uh why not
+		// If you want to have messed up note spawning, remove the sort
+		notes.sort((note1, note2) -> return FlxSort.byValues(FlxSort.ASCENDING, note1.t, note2.t));
+		
+		for (noteData in notes)
+		{
+			if (noteData.d >= Constants.NOTE_COUNT)
+				opponentStrumline.data.push(noteData);
+			else
+				playerStrumline.data.push(noteData);
+		}
 
 		loadedSong = true;
 	}
