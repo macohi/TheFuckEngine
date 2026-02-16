@@ -142,6 +142,11 @@ class PlayState extends FunkinState
 			final direction:NoteDirection = NoteDirection.fromInt(i);
 			final pressed:Bool = direction.justPressed || Preferences.botplay;
 
+			// Miss if ghost tapping is disabled
+			if (note == null && pressed && !Preferences.ghostTapping) playerGhostMiss(direction);
+
+			// Don't hit the note if nothing's being pressed
+			// Especially don't hit the note if it's null
 			if (!pressed || note == null) continue;
 
 			playerStrumline.hitNote(note);
@@ -175,6 +180,11 @@ class PlayState extends FunkinState
 	function playerNoteMiss(note:NoteSprite)
 	{
 		score += Constants.MISS_SCORE;
+	}
+
+	function playerGhostMiss(direction:NoteDirection)
+	{
+		score += Constants.GHOST_TAP_SCORE;
 	}
 
 	function playerHoldNoteDrop(holdNote:HoldNoteSprite)
