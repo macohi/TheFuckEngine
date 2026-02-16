@@ -16,9 +16,7 @@ class NoteSplash extends FunkinSprite
 
     public function buildSprite()
     {
-        loadSprite('play/ui/note/note-splashes', 82, 85);
-        setGraphicSize(Std.int(width * 1.35));
-        updateHitbox();
+        loadSprite('play/ui/note/note-splashes', 1.35, 82, 85);
 
         for (i in 0...Constants.NOTE_COUNT)
         {

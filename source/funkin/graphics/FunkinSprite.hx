@@ -7,10 +7,10 @@ import flixel.FlxSprite;
  */
 class FunkinSprite extends FlxSprite
 {
-    public function loadSprite(id:String, frameWidth:Int = 0, frameHeight:Int = 0):FunkinSprite
+    public function loadSprite(id:String, scale:Float = 1, frameWidth:Int = 0, frameHeight:Int = 0):FunkinSprite
     {
         loadGraphic(Paths.image(id), frameWidth > 0 || frameHeight > 0, frameWidth, frameHeight);
-        setGraphicSize(Std.int(width * Constants.ZOOM));
+        setGraphicSize(Std.int(width * Constants.ZOOM * scale));
         updateHitbox();
 
         return this;

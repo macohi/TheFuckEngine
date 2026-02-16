@@ -28,7 +28,7 @@ class NoteSprite extends FunkinSprite
 
     public function buildSprite()
     {
-        loadSprite('play/ui/note/notes', 84, 84);
+        loadSprite('play/ui/note/notes', 1, 84, 84);
 
         for (i in 0...Constants.NOTE_COUNT)
         {

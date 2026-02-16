@@ -19,8 +19,6 @@ class Character extends FunkinSprite
         this.meta = meta;
 
         // Loads the image
-        loadSprite('play/characters/$id/image');
-        setGraphicSize(Std.int(width * meta.scale));
-        updateHitbox();
+        loadSprite('play/characters/$id/image', meta.scale);
     }
 }

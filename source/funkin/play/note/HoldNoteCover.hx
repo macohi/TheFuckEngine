@@ -27,9 +27,7 @@ class HoldNoteCover extends FunkinSprite
 
     public function buildSprite()
     {
-        loadSprite('play/ui/note/hold-note-cover', 44, 23);
-        setGraphicSize(Std.int(width * 0.95));
-        updateHitbox();
+        loadSprite('play/ui/note/hold-note-cover', 0.95, 44, 23);
 
         for (i in 0...Constants.NOTE_COUNT)
         {
