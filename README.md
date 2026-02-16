@@ -20,6 +20,10 @@ WTF Engine is an FNF engine built from the ground up and uses shitty art. Probab
 - Human trafficking
 - Money laundering
 
+## Compiling
+
+To compile WTF Engine, please check out [COMPILING.md](docs/COMPILING.md).
+
 ## Credits
 
 - [FunkinCrew](https://github.com/FunkinCrew) - Made the disgusting game.
@@ -30,7 +34,3 @@ WTF Engine is an FNF engine built from the ground up and uses shitty art. Probab
 - [FunkinCrew](https://github.com/FunkinCrew) - Their game is the reason why this engine exists.
 - [Funkin' Contributors](https://www.youtube.com/@TheFunkinContributors) - Amazing people.
 - WTF Engine Contributors - Thank.
-
-## Compiling
-
-No compile guide yet. Guess you'll have to figure it all out.

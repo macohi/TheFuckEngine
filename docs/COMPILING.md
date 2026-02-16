@@ -1,0 +1,31 @@
+# Compiling
+
+Below are steps to compiling WTF Engine. Y'know like the requirements and all that. Just know that the engine has only been tested on Windows. A command prompt is needed in order to follow the steps below.
+
+## Setup
+
+1. Install [Haxe](https://haxe.org/download).
+2. Install [Git](https://www.git-scm.com).
+3. Run `git clone https://github.com/VirtuGuy/WTF-Engine.git` from the folder where you want to store the repository.
+4. Run `cd WTF-Engine`.
+5. Run `haxelib --global install hxpkg` and `haxelib --global run hxpkg setup`.
+6. Run `hxpkg install --force`.
+7. Run `haxelib run lime setup`.
+
+## Platform Setup
+
+Windows:
+
+1. Install [Visual Studio Build Tools](https://aka.ms/vs/17/release/vs_BuildTools.exe).
+2. Select "Individual Components" when prompted during the Build Tools installation process and install the following:
+    - MSVC v143 VS 2022 C++ x64/x86 build tools.
+    - Windows 10/11 SDK.
+
+HTML5:
+
+- You can compile the engine from here.
+
+## Compiling
+
+- Run `lime test <platform>` to compile the engine.
+- Run `lime run <platform>` if you want to relaunch the engine.
