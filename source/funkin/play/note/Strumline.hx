@@ -3,9 +3,8 @@ package funkin.play.note;
 import flixel.FlxG;
 import flixel.group.FlxGroup;
 import flixel.util.FlxSort;
-import funkin.data.song.SongData.SongNoteData;
+import funkin.data.song.SongData;
 import funkin.util.RhythmUtil;
-import funkin.util.SortUtil;
 
 /**
  * An `FlxGroup` containing strums and notes.
@@ -98,7 +97,7 @@ class Strumline extends FlxGroup
 
             // Sorts the notes
             // Not doing this will mess up the input
-            notes.sort((i, note1, note2) -> return SortUtil.byTime(FlxSort.ASCENDING, note1, note2));
+            notes.sort((i, note1, note2) -> return FlxSort.byValues(FlxSort.ASCENDING, note1.time, note2.time));
         }
 
         // Note processing
