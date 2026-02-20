@@ -2,6 +2,7 @@
     "name": "Boyfriend",
     "frameWidth": 266,
     "frameHeight": 248,
+    "flipX": true,
     "animations": [
         {
             "name": "idle",

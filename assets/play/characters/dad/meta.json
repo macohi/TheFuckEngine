@@ -1,8 +1,7 @@
 {
-    "name": "Boyfriend",
-    "image": "bf",
-    "frameWidth": 266,
-    "frameHeight": 248,
+    "name": "Daddy Dearest",
+    "frameWidth": 249,
+    "frameHeight": 315,
     "animations": [
         {
             "name": "idle",
@@ -10,11 +9,11 @@
         },
         {
             "name": "left",
-            "frames": [5, 6]
+            "frames": [3, 4]
         },
         {
             "name": "right",
-            "frames": [3, 4]
+            "frames": [5, 6]
         },
         {
             "name": "up",

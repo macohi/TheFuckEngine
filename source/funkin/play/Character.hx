@@ -32,7 +32,7 @@ class Character extends FunkinSprite
         for (anim in meta.animations)
             addAnimation(anim.name, anim.frames, anim.framerate, anim.looped);
 
-        flipX = meta.flipX == isPlayer;
+        flipX = meta.flipX != isPlayer;
 
         resetSingTimer();
         dance(true);

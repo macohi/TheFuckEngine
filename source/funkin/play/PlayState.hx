@@ -145,7 +145,7 @@ class PlayState extends FunkinState
 		opponent = CharacterRegistry.instance.fetchCharacter(song.opponent);
 		player = CharacterRegistry.instance.fetchCharacter(song.player, true);
 		
-		opponent?.setPosition(130, 350);
+		opponent?.setPosition(130, 250);
 		player?.setPosition(850, 350);
 
 		add(opponent);
