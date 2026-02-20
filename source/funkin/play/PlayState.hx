@@ -106,7 +106,7 @@ class PlayState extends FunkinState
 
 			if (conductor.time >= 0 && !songStarted) startSong();
 
-			checkSongResync();
+			checkSongTime();
 		}
 
 		opponentStrumline.process(false);
@@ -117,6 +117,7 @@ class PlayState extends FunkinState
 		// TODO: Remove this
 		// This is only here for debugging purposes
 		if (FlxG.keys.justPressed.R) resetSong();
+		if (FlxG.keys.justPressed.O) conductor.time = FlxG.sound.music.length;
 		if (FlxG.keys.justPressed.J) FlxG.switchState(() -> new FunkinState());
 
 		// HUD stuff
@@ -169,7 +170,6 @@ class PlayState extends FunkinState
 
 		// Loads the actual song
 		FlxG.sound.playMusic(Song.getInstPath(song.id), 1, false);
-		FlxG.sound.music.onComplete = endSong;
 		FlxG.sound.music.stop();
 
 		voices = new Voices(song.id);
@@ -189,8 +189,9 @@ class PlayState extends FunkinState
 	{
 		songEnded = true;
 
-		// Stops the vocals
-		// Just because the vocals could be longer than the inst
+		// Stops the music
+		// Remove this line if you want to hear something loud
+		FlxG.sound.music.stop();
 		voices.stop();
 
 		// TODO: Add song end logic
@@ -213,9 +214,16 @@ class PlayState extends FunkinState
 		loadSong();
 	}
 
-	function checkSongResync()
+	function checkSongTime()
 	{
-		if (!FlxG.sound.music?.playing) return;
+		if (!FlxG.sound.music.playing) return;
+
+		// End the song of the time has come...
+		if (conductor.time >= FlxG.sound.music.length)
+		{
+			endSong();
+			return;
+		}
 
 		// Instrumental resync
 		if (Math.abs(conductor.time - FlxG.sound.music.time) > Constants.RESYNC_THRESHOLD)
