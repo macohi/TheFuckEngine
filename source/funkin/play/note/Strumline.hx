@@ -74,6 +74,13 @@ class Strumline extends FlxGroup
 
             if (RhythmUtil.getDistance(time, speed) > FlxG.height) break;
 
+            // Skip the note if it's in the past
+            if (RhythmUtil.getDistance(time, speed) < 0)
+            {
+                data.shift();
+                break;
+            }
+
             // Creates a note
             var note:NoteSprite = notes.recycle(NoteSprite);
 

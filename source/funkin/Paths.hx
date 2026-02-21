@@ -19,6 +19,12 @@ class Paths
     public static inline function json(id:String):String
         return path('$id.${Constants.JSON_EXT}');
 
+    public static inline function inst(id:String):String
+        return sound('play/songs/$id/inst');
+
+    public static inline function voices(id:String, character:String):String
+        return sound('play/songs/$id/voices-$character');
+
     public static inline function exists(id:String):Bool
         return Assets.exists(id);
 }

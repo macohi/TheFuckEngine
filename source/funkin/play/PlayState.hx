@@ -196,7 +196,7 @@ class PlayState extends FunkinState
 		}
 
 		// Loads the actual song
-		FlxG.sound.playMusic(Song.getInstPath(song.id), 1, false);
+		FlxG.sound.playMusic(Paths.inst(song.id), 1, false);
 		FlxG.sound.music.stop();
 
 		voices = new Voices(song.id);
