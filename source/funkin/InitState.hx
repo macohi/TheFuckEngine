@@ -33,7 +33,7 @@ class InitState extends FlxState
         SongRegistry.instance = new SongRegistry();
 
         // TODO: Remove this once songs can be loaded ingame
-        PlayState.song = SongRegistry.instance.fetch('fresh');
+        PlayState.song = SongRegistry.instance.fetch('dadbattle');
 
         // Switches the state to PlayState
         // TODO: Change this to a title screen once there is one

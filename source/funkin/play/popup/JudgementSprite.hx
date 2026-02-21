@@ -1,6 +1,5 @@
 package funkin.play.popup;
 
-import flixel.FlxG;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
@@ -18,7 +17,7 @@ class JudgementSprite extends FunkinSprite
     {
         super();
 
-        acceleration.y = 600;
+        acceleration.y = 450;
         moves = true;
 
         loadSprite('play/ui/judgements', 1, 192, 96);
@@ -31,14 +30,13 @@ class JudgementSprite extends FunkinSprite
 
     public function popup(judgement:Judgement)
     {
-        acceleration.x = FlxG.random.int(-10, 10);
-        velocity.y = -250;
+        velocity.y = -200;
         alpha = 1;
 
         playAnimation(judgement);
 
-        new FlxTimer().start(0.5, _ -> {
-            FlxTween.tween(this, { alpha: 0 }, 0.5, { ease: FlxEase.quadOut, onComplete: _ -> kill() });
+        new FlxTimer().start(0.25, _ -> {
+            FlxTween.tween(this, { alpha: 0 }, 0.75, { ease: FlxEase.quadOut, onComplete: _ -> kill() });
         }); 
     }
 }

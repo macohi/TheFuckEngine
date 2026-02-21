@@ -136,6 +136,8 @@ class PlayState extends FunkinState
 		scoreText.text = Std.string(Std.int(score));
 		scoreText.screenCenter(X);
 		scoreText.y = FlxG.height - scoreText.height - 50;
+
+		if (Preferences.downscroll) scoreText.y = 50;
 	}
 
 	override function beatHit(beat:Int)

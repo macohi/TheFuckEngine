@@ -1,7 +1,7 @@
 package funkin;
 
 import flixel.FlxG;
-import flixel.util.FlxSignal;
+import flixel.util.FlxSignal.FlxTypedSignal;
 
 /**
  * The conductor class for the game. This is what handles steps and beats and all that crap.
