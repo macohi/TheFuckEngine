@@ -62,6 +62,9 @@ class TitleScreen extends FunkinState
 
 		if (controls.ACCEPT && !transitioning)
 		{
+			trace('LEAVE!');
+			transitioning = true;
+
 			var confirmMenuSound = new FlxSound().loadEmbedded(Paths.sound('menus/sounds/confirmMenu'));
 			confirmMenuSound.play();
 
