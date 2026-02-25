@@ -35,9 +35,7 @@ class InitState extends FlxState
         // TODO: Remove this once songs can be loaded ingame
         PlayState.song = SongRegistry.instance.fetch('fresh');
 
-        // Switches the state to PlayState
-        // TODO: Change this to a title screen once there is one
-        FlxG.switchState(() -> new funkin.play.PlayState());
+        FlxG.switchState(() -> new funkin.ui.title.TitleScreen());
 
         super.create();
     }
