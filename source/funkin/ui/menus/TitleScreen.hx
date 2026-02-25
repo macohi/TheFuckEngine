@@ -50,6 +50,7 @@ class TitleScreen extends FunkinState
 
 		wackyTexttext = new FlxText(0, 0, FlxG.width, wackyText, 24);
 		wackyTexttext.alignment = CENTER;
+		wackyTexttext.antialiasing = true; // illegal
 		add(wackyTexttext);
 
 		conductor.bpm = 102;
