@@ -69,12 +69,13 @@ class TitleScreen extends FunkinState
 			confirmMenuSound.play();
 
 			var tweenLengths = (confirmMenuSound.length / 1000);
+			var verticalOffset = 0.5;
 
-			FlxTween.tween(titleGF, {alpha: 0, y: titleGF.y * 1.1}, tweenLengths, {
+			FlxTween.tween(titleGF, {alpha: 0, y: titleGF.y * (1 + verticalOffset)}, tweenLengths, {
 				ease: FlxEase.circInOut,
 				startDelay: tweenLengths * 0.1,
 			});
-			FlxTween.tween(logo, {alpha: 0, y: logo.y * 0.9}, tweenLengths, {
+			FlxTween.tween(logo, {alpha: 0, y: logo.y * (1 - verticalOffset)}, tweenLengths, {
 				ease: FlxEase.circInOut,
 				startDelay: tweenLengths * 0.1,
 			});
