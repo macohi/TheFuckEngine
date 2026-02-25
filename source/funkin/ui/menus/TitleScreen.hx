@@ -54,6 +54,14 @@ class TitleScreen extends FunkinState
 		// wackyTexttext.antialiasing = true; // illegal
 		add(wackyTexttext);
 
+		wackyTexttext.scale.set(
+			1.4,
+			1.4
+		);
+		wackyTexttext.updateHitbox();
+		wackyTexttext.screenCenter();
+		wackyTexttext.y -= logo.height * 0.5;
+
 		conductor.bpm = 102;
 		conductor.time = 0;
 		FlxG.sound.playMusic(Paths.sound('menus/tracks/freakyMenu'), 1, true);
@@ -66,11 +74,6 @@ class TitleScreen extends FunkinState
 		super.beatHit(beat);
 
 		titleGF.dance();
-
-		wackyTexttext.scale.set(
-			1.4,
-			1.4
-		);
 	}
 
 	override function update(elapsed:Float)
@@ -79,14 +82,6 @@ class TitleScreen extends FunkinState
 
 		conductor.time += elapsed * Constants.MS_PER_SEC;
 		conductor.update();
-
-		wackyTexttext.scale.set(
-			FlxMath.roundDecimal(MathUtil.lerp(wackyTexttext.scale.x, 1, 0.15), 1),
-			FlxMath.roundDecimal(MathUtil.lerp(wackyTexttext.scale.y, 1, 0.15), 1),
-		);
-		wackyTexttext.updateHitbox();
-		wackyTexttext.screenCenter();
-		wackyTexttext.y -= logo.height * 0.5;
 
 		if (controls.ACCEPT && !transitioning)
 		{
