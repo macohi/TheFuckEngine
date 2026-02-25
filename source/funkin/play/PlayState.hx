@@ -173,7 +173,7 @@ class PlayState extends FunkinState
 			then it sees if the opponent isn't singing,
 			then it just does what it used to.
 		**/
-		setCameraTarget((camTarget == opponent && (player.singTimer > 0 || !(opponent.singTimer > 0))) ? player : opponent);
+		setCameraTarget((camTarget == opponent && (player.animation.name == 'idle' || opponent.animation.name != 'idle')) ? player : opponent);
 	}
 
 	function loadCharacters()
