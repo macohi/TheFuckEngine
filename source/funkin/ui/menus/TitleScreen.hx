@@ -49,6 +49,7 @@ class TitleScreen extends FunkinState
 		wackyText = trueWackyTexts[FlxG.random.int(0, trueWackyTexts.length - 1)] ?? 'null object reference reference!';
 
 		wackyTexttext = new FlxText(0, 0, FlxG.width, wackyText, 24);
+		wackyTexttext.alignment = CENTER;
 		add(wackyTexttext);
 
 		conductor.bpm = 102;
