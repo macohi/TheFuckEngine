@@ -2,7 +2,6 @@ package funkin.ui.menus;
 
 import flixel.FlxG;
 import flixel.sound.FlxSound;
-import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
@@ -69,14 +68,15 @@ class TitleScreen extends FunkinState
 			confirmMenuSound.play();
 
 			var tweenLengths = (confirmMenuSound.length / 1000);
-			var verticalOffset = 0.5;
+			var verticalOffset = 0.75;
+			var tweenEase = FlxEase.sineOut;
 
 			FlxTween.tween(titleGF, {alpha: 0, y: titleGF.y * (1 + verticalOffset)}, tweenLengths, {
-				ease: FlxEase.circInOut,
+				ease: tweenEase,
 				startDelay: tweenLengths * 0.1,
 			});
 			FlxTween.tween(logo, {alpha: 0, y: logo.y * (1 - verticalOffset)}, tweenLengths, {
-				ease: FlxEase.circInOut,
+				ease: tweenEase,
 				startDelay: tweenLengths * 0.1,
 			});
 
