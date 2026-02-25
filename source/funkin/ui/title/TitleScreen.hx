@@ -2,12 +2,14 @@ package funkin.ui.title;
 
 import flixel.FlxG;
 import funkin.data.character.CharacterRegistry;
+import funkin.graphics.FunkinSprite;
 import funkin.play.Character;
 
 class TitleScreen extends FunkinState
 {
 	var titleGF:Character;
-	
+	var logo:FunkinSprite;
+
 	var camZoom:Float = 1.15;
 
 	override function create()
@@ -21,6 +23,17 @@ class TitleScreen extends FunkinState
 		titleGF.updateHitbox();
 		 
 		titleGF.screenCenter();
+
+		logo = new FunkinSprite(0, 0, Paths.image('title/logo'));
+		
+		logo.scale.set(2,2);
+		logo.updateHitbox();
+		logo.screenCenter();
+
+		add(logo);
+
+		titleGF.y += titleGF.height / 4;
+		logo.y -= logo.height / 2;
 
 		conductor.bpm = 102;
 		conductor.time = 0;
