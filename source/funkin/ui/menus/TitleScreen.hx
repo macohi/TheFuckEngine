@@ -9,9 +9,12 @@ import funkin.data.character.CharacterRegistry;
 import funkin.graphics.FunkinSprite;
 import funkin.play.Character;
 import funkin.play.PlayState;
+import funkin.util.FileUtil;
 
 class TitleScreen extends FunkinState
 {
+	var wackyText:String = '';
+
 	var titleGF:Character;
 	var logo:FunkinSprite;
 
@@ -22,6 +25,10 @@ class TitleScreen extends FunkinState
 	override function create()
 	{
 		super.create();
+
+		var trueWackyTexts:Array<String> = FileUtil.getText(Paths.text('menus/titleTexts')).split('\n');
+		
+		wackyText = trueWackyTexts[FlxG.random.int(0, trueWackyTexts.length - 1)] ?? 'null object reference reference!';
 
 		titleGF = CharacterRegistry.instance.fetchCharacter('title-gf');
 		add(titleGF);
