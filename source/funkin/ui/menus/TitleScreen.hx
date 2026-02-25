@@ -1,6 +1,7 @@
 package funkin.ui.menus;
 
 import flixel.FlxG;
+import flixel.math.FlxMath;
 import flixel.sound.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
@@ -42,7 +43,7 @@ class TitleScreen extends FunkinState
 		add(logo);
 
 		titleGF.y += titleGF.height / 4;
-		logo.y -= logo.height * 0.75;
+		logo.y -= logo.height * 0.9;
 
 		var trueWackyTexts:Array<String> = FileUtil.getText(Paths.text('menus/titleTexts')).split('\n');
 
@@ -50,7 +51,7 @@ class TitleScreen extends FunkinState
 
 		wackyTexttext = new FlxText(0, 0, FlxG.width, wackyText, 24);
 		wackyTexttext.alignment = CENTER;
-		wackyTexttext.antialiasing = true; // illegal
+		// wackyTexttext.antialiasing = true; // illegal
 		add(wackyTexttext);
 
 		conductor.bpm = 102;
@@ -67,8 +68,8 @@ class TitleScreen extends FunkinState
 		titleGF.dance();
 
 		wackyTexttext.scale.set(
-			1.3,
-			1.3
+			1.4,
+			1.4
 		);
 	}
 
@@ -80,11 +81,12 @@ class TitleScreen extends FunkinState
 		conductor.update();
 
 		wackyTexttext.scale.set(
-			MathUtil.lerp(wackyTexttext.scale.x, 1, 0.15),
-			MathUtil.lerp(wackyTexttext.scale.y, 1, 0.15),
+			FlxMath.roundDecimal(MathUtil.lerp(wackyTexttext.scale.x, 1, 0.15), 1),
+			FlxMath.roundDecimal(MathUtil.lerp(wackyTexttext.scale.y, 1, 0.15), 1),
 		);
 		wackyTexttext.updateHitbox();
 		wackyTexttext.screenCenter();
+		wackyTexttext.y -= logo.height * 0.5;
 
 		if (controls.ACCEPT && !transitioning)
 		{
