@@ -39,9 +39,11 @@ class TitleScreen extends FunkinState
 		titleGF.screenCenter();
 
 		logo = new FunkinSprite(0, 0, Paths.image('menus/logo'));
+		logo.screenCenter();
 		add(logo);
 
 		titleGF.y += titleGF.height / 4;
+		logo.y -= logo.height * 0.9;
 
 		var trueWackyTexts:Array<String> = FileUtil.getText(Paths.text('menus/titleTexts')).split('\n');
 
@@ -84,9 +86,6 @@ class TitleScreen extends FunkinState
 
 		logo.scale.x = MathUtil.lerp(logo.scale.x, 1, 0.15);
 		logo.scale.y = MathUtil.lerp(logo.scale.y, 1, 0.15);
-		logo.updateHitbox();
-		logo.screenCenter();
-		logo.y -= logo.height * 0.9;
 
 		if (controls.ACCEPT && !transitioning)
 		{
