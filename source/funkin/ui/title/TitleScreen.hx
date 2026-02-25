@@ -14,6 +14,7 @@ class TitleScreen extends FunkinState
 
 		titleGF = CharacterRegistry.instance.fetchCharacter('title-gf');
 		add(titleGF);
+		titleGF.dance();
 		titleGF.screenCenter();
 
 		conductor.bpm = 102;
