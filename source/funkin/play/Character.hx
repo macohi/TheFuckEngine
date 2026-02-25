@@ -13,7 +13,7 @@ class Character extends FunkinSprite
     public var meta:CharacterData;
     public var isPlayer:Bool;
 
-    var singTimer:Float;
+    public var singTimer:Float;
     var danced:Bool = false;
 
     public function new(id:String, meta:CharacterData, isPlayer:Bool)

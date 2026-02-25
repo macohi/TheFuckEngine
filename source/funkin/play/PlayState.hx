@@ -167,7 +167,13 @@ class PlayState extends FunkinState
 
 		// Moves the camera
 		// TODO: Remove this once events are added
-		setCameraTarget(camTarget == opponent ? player : opponent);
+
+		/**
+			First thing it tries to do is see if the player is singing,
+			then it sees if the opponent isn't singing,
+			then it just does what it used to.
+		**/
+		setCameraTarget((camTarget == opponent && (player.singTimer > 0 || !(opponent.singTimer > 0))) ? player : opponent);
 	}
 
 	function loadCharacters()
