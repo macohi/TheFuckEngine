@@ -1,4 +1,4 @@
-package funkin.ui.title;
+package funkin.ui.menus;
 
 import flixel.FlxG;
 import funkin.data.character.CharacterRegistry;
